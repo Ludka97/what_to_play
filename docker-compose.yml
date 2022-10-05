@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+
+  redis:
+    image: redis:latest
+
+  hectar: &base_container
+    image: ludka/what_to_play:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/app/
+    environment:
+      - REDIS_HOST=redis
+      - BOT_TOKEN=5674717393:AAEwt1bWE6ceITV91XjHbvdjFvCU773u9cQ
+    command: |
+      python server.py
+
